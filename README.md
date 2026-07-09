@@ -27,7 +27,7 @@ Think **Monkeytype, but for code.**
 
 | Area      | Choice                                                        |
 | --------- | ------------------------------------------------------------- |
-| Framework | Next.js 15 (App Router), React 19, TypeScript                 |
+| Framework | Next.js 16 (App Router), React 19, TypeScript                 |
 | Styling   | Tailwind CSS v4, shadcn-style primitives, Lucide icons        |
 | Animation | Framer Motion                                                 |
 | State     | Zustand (settings + progress persisted to Local Storage)      |
