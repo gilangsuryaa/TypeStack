@@ -14,7 +14,7 @@ import { APP_NAME } from "@/constants";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "How TypeStack works: a code-focused typing trainer built with Next.js 15, React 19 and a custom typing engine.",
+    "How TypeStack works: a code-focused typing trainer built with Next.js 16, React 19 and a custom typing engine.",
 };
 
 const STEPS = [
@@ -36,7 +36,7 @@ const STEPS = [
 ];
 
 const STACK = [
-  { icon: Cpu, label: "Next.js 15 · React 19 · TypeScript" },
+  { icon: Cpu, label: "Next.js 16 · React 19 · TypeScript" },
   { icon: Palette, label: "Tailwind CSS v4 · Framer Motion · Lucide" },
   { icon: Database, label: "Zustand · TanStack Query · Local Storage" },
   { icon: Gauge, label: "Custom synchronous tokenizer & typing engine" },
