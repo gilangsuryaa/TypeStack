@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Keyboard } from "lucide-react";
+import { Keyboard } from "lucide-react";
 import { APP_NAME } from "@/constants";
 
 export function Footer() {
@@ -19,15 +19,6 @@ export function Footer() {
           <Link href="/about" className="hover:text-foreground">
             About
           </Link>
-          <a
-            href="https://vercel.com"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 hover:text-foreground"
-          >
-            <Github className="h-4 w-4" />
-            Deploy
-          </a>
         </div>
       </div>
     </footer>
