@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Keyboard } from "lucide-react";
-import { APP_NAME } from "@/constants";
+import { Github, Keyboard } from "lucide-react";
+import { APP_NAME, GITHUB_URL } from "@/constants";
 
 export function Footer() {
   return (
@@ -19,6 +19,15 @@ export function Footer() {
           <Link href="/about" className="hover:text-foreground">
             About
           </Link>
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub repository"
+            className="flex items-center justify-center transition-colors hover:text-foreground"
+          >
+            <Github className="h-4 w-4" aria-hidden="true" />
+          </a>
         </div>
       </div>
     </footer>

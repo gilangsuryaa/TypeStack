@@ -2,6 +2,7 @@ import type { Difficulty, Language, TimerMode } from "@/types";
 
 export const APP_NAME = "TypeStack";
 export const APP_TAGLINE = "Practice typing with real production code.";
+export const GITHUB_URL = "https://github.com/gilangsuryaa/TypeStack";
 
 export const STORAGE_KEYS = {
   settings: "typestack:settings",
