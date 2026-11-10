@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, RotateCcw, Trophy, Target, History } from "lucide-react";
+import { RotateCcw, Trophy, Target, History } from "lucide-react";
 import { useSessionStore } from "@/stores/session-store";
 import { useProgressStore } from "@/stores/progress-store";
 import { getFile } from "@/data/projects";
@@ -15,6 +16,7 @@ import { formatDuration, timeAgo } from "@/lib/format";
 
 export default function ResultPage() {
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
   const lastResult = useSessionStore((s) => s.lastResult);
   const select = useSessionStore((s) => s.select);
   const results = useProgressStore((s) => s.results);
@@ -31,6 +33,22 @@ export default function ResultPage() {
     }
   }
 
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) {
+    return (
+      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+        <h1 className="sr-only">Session result</h1>
+        <div className="h-64 animate-pulse rounded-2xl border border-border bg-card" />
+        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          <div className="h-28 animate-pulse rounded-2xl border border-border bg-card" />
+          <div className="h-28 animate-pulse rounded-2xl border border-border bg-card" />
+          <div className="h-28 animate-pulse rounded-2xl border border-border bg-card" />
+        </div>
+      </div>
+    );
+  }
+
   if (!lastResult && results.length === 0) {
     return (
       <div className="mx-auto flex min-h-[60vh] max-w-md flex-col items-center justify-center px-4 text-center">
@@ -43,10 +61,7 @@ export default function ResultPage() {
           up here.
         </p>
         <Button asChild className="mt-6">
-          <Link href="/projects">
-            Start practicing
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          <Link href="/projects">Start practicing</Link>
         </Button>
       </div>
     );
@@ -56,6 +71,7 @@ export default function ResultPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+      <h1 className="sr-only">Session result</h1>
       {lastResult && meta && (
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -86,10 +102,7 @@ export default function ResultPage() {
                 Retry
               </Button>
               <Button asChild>
-                <Link href="/projects">
-                  New file
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                <Link href="/projects">New file</Link>
               </Button>
             </div>
           </div>

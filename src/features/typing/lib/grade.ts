@@ -30,7 +30,7 @@ export const GRADE_META: Record<
   A: {
     label: "A",
     className: "text-success",
-    blurb: "Sharp and consistent — great run.",
+    blurb: "Sharp and consistent. Great run.",
   },
   B: {
     label: "B",

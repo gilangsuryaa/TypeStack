@@ -9,7 +9,7 @@ export function Footer() {
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Keyboard className="h-4 w-4" />
           <span>
-            {APP_NAME} — built for developers who type all day.
+            {APP_NAME}: built for developers who type all day.
           </span>
         </div>
         <div className="flex items-center gap-4 text-sm text-muted-foreground">

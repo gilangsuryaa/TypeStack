@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Check, ChevronRight, FileCode2 } from "lucide-react";
@@ -10,6 +10,7 @@ import { useSessionStore } from "@/stores/session-store";
 import { useProgressStore } from "@/stores/progress-store";
 import { DifficultyBadge } from "@/components/shared/difficulty-badge";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { SegmentedControl } from "@/components/ui/segmented";
 import { LANGUAGE_LABEL } from "@/constants";
 import { cn } from "@/lib/utils";
@@ -38,6 +39,9 @@ export default function ProjectsPage() {
     [results],
   );
   const [filter, setFilter] = useState<Filter>("all");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const filtered = useMemo(() => {
     return projects
@@ -77,8 +81,31 @@ export default function ProjectsPage() {
         />
       </div>
 
-      <div className="mt-8 space-y-6">
-        {filtered.map(({ project, files }, groupIndex) => (
+      {!mounted ? (
+        <div className="mt-8 space-y-6">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="h-44 animate-pulse rounded-2xl border border-border bg-card"
+            />
+          ))}
+        </div>
+      ) : filtered.length === 0 ? (
+        <div className="mt-16 flex flex-col items-center text-center">
+          <p className="text-muted-foreground">
+            No files match this difficulty yet.
+          </p>
+          <Button
+            variant="outline"
+            className="mt-4"
+            onClick={() => setFilter("all")}
+          >
+            Show all files
+          </Button>
+        </div>
+      ) : (
+        <div className="mt-8 space-y-6">
+          {filtered.map(({ project, files }, groupIndex) => (
           <motion.div
             key={project.id}
             initial={{ opacity: 0, y: 12 }}
@@ -152,8 +179,9 @@ export default function ProjectsPage() {
               })}
             </ul>
           </motion.div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

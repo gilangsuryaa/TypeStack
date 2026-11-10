@@ -19,7 +19,7 @@
   --secondary-foreground: oklch(0.25 0.01 260);
 
   --muted: oklch(0.96 0.006 260);
-  --muted-foreground: oklch(0.52 0.01 260);
+  --muted-foreground: oklch(0.46 0.01 260);
 
   --accent: oklch(0.95 0.01 265);
   --accent-foreground: oklch(0.25 0.02 265);
@@ -37,23 +37,24 @@
   --radius: 0.75rem;
 
   /* Typing engine tokens */
-  --type-pending: oklch(0.7 0.01 260);
+  --type-pending: oklch(0.46 0.01 260);
   --type-correct: oklch(0.35 0.02 260);
-  --type-incorrect: oklch(0.58 0.22 25);
+  --type-incorrect: oklch(0.5 0.22 25);
   --type-incorrect-bg: oklch(0.9 0.08 25);
   --type-cursor: oklch(0.55 0.22 265);
 
-  /* Syntax colors (VS Code inspired, light) */
-  --syntax-keyword: oklch(0.5 0.2 300);
-  --syntax-string: oklch(0.5 0.14 145);
-  --syntax-number: oklch(0.55 0.16 55);
-  --syntax-comment: oklch(0.6 0.02 145);
-  --syntax-function: oklch(0.55 0.16 250);
-  --syntax-tag: oklch(0.55 0.2 20);
-  --syntax-attr: oklch(0.55 0.16 55);
-  --syntax-punct: oklch(0.5 0.01 260);
-  --syntax-property: oklch(0.5 0.16 235);
-  --syntax-boolean: oklch(0.55 0.16 55);
+  /* Syntax colors (VS Code inspired, light). Kept at L<=0.44 so every token
+     clears WCAG AA (4.5:1) against the light background. */
+  --syntax-keyword: oklch(0.44 0.2 300);
+  --syntax-string: oklch(0.44 0.14 145);
+  --syntax-number: oklch(0.42 0.16 55);
+  --syntax-comment: oklch(0.42 0.03 145);
+  --syntax-function: oklch(0.44 0.16 250);
+  --syntax-tag: oklch(0.44 0.2 20);
+  --syntax-attr: oklch(0.42 0.16 55);
+  --syntax-punct: oklch(0.4 0.01 260);
+  --syntax-property: oklch(0.44 0.16 235);
+  --syntax-boolean: oklch(0.42 0.16 55);
   --syntax-plain: oklch(0.3 0.01 260);
 }
 
@@ -89,7 +90,7 @@
   --input: oklch(0.3 0.01 265);
   --ring: oklch(0.7 0.16 265);
 
-  --type-pending: oklch(0.45 0.01 260);
+  --type-pending: oklch(0.62 0.01 260);
   --type-correct: oklch(0.92 0.01 260);
   --type-incorrect: oklch(0.7 0.19 25);
   --type-incorrect-bg: oklch(0.35 0.12 25);
@@ -136,9 +137,9 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-xl: calc(var(--radius) + 4px);
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", "Cascadia Code",
-    "JetBrains Mono", monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SF Mono",
+    "Cascadia Code", monospace;
 }
 
 @layer base {
@@ -160,6 +161,28 @@
   ::selection {
     background-color: color-mix(in oklch, var(--primary) 25%, transparent);
   }
+
+  /* Interactive affordance: every enabled control reads as clickable. */
+  a[href],
+  button:not(:disabled),
+  [role="button"],
+  [role="switch"],
+  [role="tab"],
+  summary,
+  select,
+  input[type="range"],
+  input[type="checkbox"],
+  input[type="radio"],
+  label[for] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled,
+  input:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
 }
 
 @layer utilities {
@@ -169,21 +192,6 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
-
-  .grid-bg {
-    background-image:
-      linear-gradient(
-        to right,
-        color-mix(in oklch, var(--border) 60%, transparent) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        color-mix(in oklch, var(--border) 60%, transparent) 1px,
-        transparent 1px
-      );
-    background-size: 40px 40px;
   }
 }
 

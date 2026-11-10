@@ -1,24 +1,17 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  Gauge,
-  Code2,
-  Trophy,
-  Palette,
-  Timer,
-  Keyboard,
-} from "lucide-react";
+import { Gauge, Code2, Trophy, Palette, Timer, Keyboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/shared/reveal";
 import { projects } from "@/data/projects";
 import { APP_NAME } from "@/constants";
+import { cn } from "@/lib/utils";
 
 const FEATURES = [
   {
     icon: Code2,
     title: "Real production code",
     description:
-      "Type actual TypeScript, React, CSS and JSON from five complete projects — not random words.",
+      "Type actual TypeScript, React, CSS and JSON from five complete projects, not random words.",
   },
   {
     icon: Gauge,
@@ -54,19 +47,10 @@ const totalFiles = projects.reduce((sum, p) => sum + p.files.length, 0);
 
 export default function HomePage() {
   return (
-    <div className="relative">
-      <div className="pointer-events-none absolute inset-0 -z-10 grid-bg [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)] opacity-40" />
-
+    <div>
       {/* Hero */}
       <section className="mx-auto max-w-6xl px-4 pt-20 pb-16 text-center sm:px-6 sm:pt-28">
         <Reveal>
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-            <span className="flex h-1.5 w-1.5 rounded-full bg-primary" />
-            Monkeytype, but for real code
-          </span>
-        </Reveal>
-
-        <Reveal delay={0.05}>
           <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
             Type the code you actually{" "}
             <span className="text-primary">ship</span>.
@@ -76,17 +60,14 @@ export default function HomePage() {
         <Reveal delay={0.1}>
           <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
             {APP_NAME} trains your typing speed on syntax, structure and patterns
-            from real projects — so your fingers keep up with your ideas.
+            from real projects, so your fingers keep up with your ideas.
           </p>
         </Reveal>
 
         <Reveal delay={0.15}>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild size="lg">
-              <Link href="/projects">
-                Start practicing
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <Link href="/projects">Start practicing</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link href="/about">How it works</Link>
@@ -114,20 +95,37 @@ export default function HomePage() {
 
       {/* Features */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map((feature, index) => (
-            <Reveal key={feature.title} delay={index * 0.05}>
-              <div className="h-full rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/40">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <feature.icon className="h-5 w-5" />
+        <p className="font-mono text-xs text-muted-foreground">capabilities</p>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURES.map((feature, index) => {
+            const featured = index === 0;
+            return (
+              <Reveal
+                key={feature.title}
+                delay={index * 0.05}
+                className={featured ? "sm:col-span-2" : undefined}
+              >
+                <div
+                  className={cn(
+                    "h-full rounded-2xl border border-border p-6 transition-colors hover:border-primary/40",
+                    featured
+                      ? "flex flex-col gap-4 bg-primary/5 sm:flex-row sm:items-center"
+                      : "bg-card",
+                  )}
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <feature.icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h2 className="font-semibold">{feature.title}</h2>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="mt-4 font-semibold">{feature.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {feature.description}
-                </p>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
@@ -142,10 +140,7 @@ export default function HomePage() {
               Pick a project, choose your difficulty, and start typing real code.
             </p>
             <Button asChild size="lg" className="mt-8">
-              <Link href="/projects">
-                Browse projects
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <Link href="/projects">Browse projects</Link>
             </Button>
           </div>
         </Reveal>

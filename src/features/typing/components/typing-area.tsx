@@ -59,7 +59,7 @@ const TypingLine = memo(function TypingLine({
     <div className={cn("flex whitespace-pre", caretRel !== null && "bg-muted/40")}>
       {showLineNumbers && (
         <span
-          className="mr-4 shrink-0 select-none text-right text-muted-foreground/50 tabular-nums"
+          className="mr-4 shrink-0 select-none text-right text-muted-foreground tabular-nums"
           style={{ width: `${gutterWidth}ch` }}
         >
           {line.number}
@@ -90,8 +90,9 @@ const TypingLine = memo(function TypingLine({
                 style={{
                   color: incorrect
                     ? "var(--type-incorrect)"
-                    : TOKEN_COLOR[rc.type],
-                  opacity: isTyped ? 1 : 0.4,
+                    : isTyped
+                      ? TOKEN_COLOR[rc.type]
+                      : "var(--type-pending)",
                 }}
               >
                 {rc.char}

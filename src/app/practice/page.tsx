@@ -27,6 +27,7 @@ export default function PracticePage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <h1 className="sr-only">Typing session</h1>
       <TypingSession key={file.id} project={project} file={file} />
     </div>
   );

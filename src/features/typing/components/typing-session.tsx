@@ -140,10 +140,7 @@ export function TypingSession({ project, file }: TypingSessionProps) {
 
       <StatsBar stats={stats} timerMode={settings.timerMode} timeLeft={timeLeft} />
 
-      <div
-        className="relative rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-6"
-        onClick={focus}
-      >
+      <div className="relative rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-6">
         <textarea
           ref={captureRef}
           value=""
@@ -174,7 +171,7 @@ export function TypingSession({ project, file }: TypingSessionProps) {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center rounded-2xl bg-card/70 backdrop-blur-[2px]"
+            className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center rounded-2xl bg-card/80"
           >
             <span className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm">
               <Keyboard className="h-4 w-4" />

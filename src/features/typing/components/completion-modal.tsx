@@ -38,14 +38,18 @@ export function CompletionModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div
-            className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+          <button
+            type="button"
+            aria-label="Close dialog"
+            tabIndex={-1}
+            className="absolute inset-0 bg-background/85"
             onClick={onClose}
           />
 
           <motion.div
             role="dialog"
             aria-modal="true"
+            aria-label="Session results"
             className="relative w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl sm:p-8"
             initial={{ opacity: 0, scale: 0.94, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}

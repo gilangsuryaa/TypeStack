@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowRight,
   Keyboard,
   Cpu,
   Palette,
@@ -17,21 +16,26 @@ export const metadata: Metadata = {
     "How TypeStack works: a code-focused typing trainer built with Next.js 16, React 19 and a custom typing engine.",
 };
 
-const STEPS = [
+const FLOW = [
   {
-    title: "Pick a project & file",
+    title: "Pick a project and file",
     description:
-      "Choose from five projects ordered easy to extreme. Every file is real, production-style source code.",
+      "Five projects run from a landing page to a SaaS AI dashboard. Every file is real, production-style source, ordered easy to extreme.",
   },
   {
-    title: "Type it exactly",
+    title: "Set the timer",
     description:
-      "Reproduce the code character-for-character. Tab and Enter handle indentation automatically, just like your editor.",
+      "Pick 30s, 60s, 120s or unlimited, and change it mid-run without losing your place.",
   },
   {
-    title: "Track your run",
+    title: "Type the code exactly",
     description:
-      "WPM, accuracy, mistakes and progress update live. Finish to get a grade and save the run to your history.",
+      "Tab and Enter handle indentation, syntax highlights as you go, and every keystroke is checked against the source.",
+  },
+  {
+    title: "Review and continue",
+    description:
+      "Finish to get a grade from S to D with WPM, accuracy and mistakes, saved to a local history, then jump to the next file.",
   },
 ];
 
@@ -54,27 +58,31 @@ export default function AboutPage() {
       <p className="mt-4 text-lg text-muted-foreground">
         Most typing tests train you on random prose. But developers spend the
         day typing brackets, generics, JSX and imports. {APP_NAME} closes that
-        gap by having you type the code you actually write — so your muscle
+        gap by having you type the code you actually write, so your muscle
         memory matches your work.
       </p>
 
-      <div className="mt-12 space-y-4">
-        {STEPS.map((step, index) => (
-          <div
-            key={step.title}
-            className="flex gap-4 rounded-2xl border border-border bg-card p-5"
-          >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
-              {index + 1}
-            </span>
-            <div>
-              <h2 className="font-semibold">{step.title}</h2>
+      <div className="mt-12">
+        <h2 className="font-mono text-xs text-muted-foreground">
+          how a run works
+        </h2>
+        <ol className="mt-6 space-y-8 border-l border-border pl-6">
+          {FLOW.map((step, index) => (
+            <li key={step.title} className="relative">
+              <span
+                aria-hidden
+                className="absolute -left-[31px] top-1.5 h-2.5 w-2.5 rounded-full border border-border bg-background"
+              />
+              <span className="font-mono text-xs text-primary">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-1 font-semibold">{step.title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">
                 {step.description}
               </p>
-            </div>
-          </div>
-        ))}
+            </li>
+          ))}
+        </ol>
       </div>
 
       <div className="mt-12">
@@ -98,10 +106,7 @@ export default function AboutPage() {
           No sign-up required. Your progress lives in your browser.
         </p>
         <Button asChild className="mt-6">
-          <Link href="/projects">
-            Browse projects
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          <Link href="/projects">Browse projects</Link>
         </Button>
       </div>
     </div>

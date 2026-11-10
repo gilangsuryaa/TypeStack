@@ -87,6 +87,7 @@ export default function SettingsPage() {
                 control={
                   <input
                     type="range"
+                    aria-label="Editor font size"
                     min={FONT_SIZE.min}
                     max={FONT_SIZE.max}
                     step={FONT_SIZE.step}
@@ -102,6 +103,7 @@ export default function SettingsPage() {
                 description="Show a gutter with line numbers."
                 control={
                   <Switch
+                    label="Show line numbers"
                     checked={settings.showLineNumbers}
                     onCheckedChange={() => settings.toggle("showLineNumbers")}
                   />
@@ -113,6 +115,7 @@ export default function SettingsPage() {
                 description="Faint vertical guides for nested code."
                 control={
                   <Switch
+                    label="Show indentation guides"
                     checked={settings.showIndentGuides}
                     onCheckedChange={() => settings.toggle("showIndentGuides")}
                   />
@@ -149,6 +152,7 @@ export default function SettingsPage() {
                 description="A subtle click on each keystroke."
                 control={
                   <Switch
+                    label="Typing sound"
                     checked={settings.typingSound}
                     onCheckedChange={() => settings.toggle("typingSound")}
                   />
@@ -160,6 +164,7 @@ export default function SettingsPage() {
                 description="Smoothly glide the caret between characters."
                 control={
                   <Switch
+                    label="Cursor animation"
                     checked={settings.cursorAnimation}
                     onCheckedChange={() => settings.toggle("cursorAnimation")}
                   />
@@ -171,6 +176,7 @@ export default function SettingsPage() {
                 description="Keep the current line centered as you type."
                 control={
                   <Switch
+                    label="Auto scroll"
                     checked={settings.autoScroll}
                     onCheckedChange={() => settings.toggle("autoScroll")}
                   />

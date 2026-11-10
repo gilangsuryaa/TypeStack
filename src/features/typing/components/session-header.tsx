@@ -84,10 +84,22 @@ export function SessionHeader({
           </button>
         </div>
 
-        <Button size="icon" variant="outline" onClick={onRestart} title="Restart (Ctrl+R)">
+        <Button
+          size="icon"
+          variant="outline"
+          onClick={onRestart}
+          title="Restart (Ctrl+R)"
+          aria-label="Restart session"
+        >
           <RotateCcw className="h-4 w-4" />
         </Button>
-        <Button size="icon" variant="ghost" onClick={onExit} title="Exit (Esc)">
+        <Button
+          size="icon"
+          variant="ghost"
+          onClick={onExit}
+          title="Exit (Esc)"
+          aria-label="Exit to projects"
+        >
           <LogOut className="h-4 w-4" />
         </Button>
       </div>

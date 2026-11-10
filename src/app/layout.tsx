@@ -9,19 +9,19 @@ import { PageTransition } from "@/components/layout/page-transition";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
 const mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: `${APP_NAME} — ${APP_TAGLINE}`,
+    default: `${APP_NAME}: ${APP_TAGLINE}`,
     template: `%s · ${APP_NAME}`,
   },
   description:
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: APP_NAME }],
   openGraph: {
-    title: `${APP_NAME} — ${APP_TAGLINE}`,
+    title: `${APP_NAME}: ${APP_TAGLINE}`,
     description:
       "Practice typing with real production code. Track WPM, accuracy, and grade in real time.",
     type: "website",
